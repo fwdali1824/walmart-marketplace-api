@@ -1,13 +1,6 @@
 {
   "version": 2,
   "name": "walmart-marketplace-api",
-  "public": true,
-  "buildCommand": "npm run build",
-  "installCommand": "npm install",
-  "framework": "nodejs",
-  "env": {
-    "NODE_ENV": "production"
-  },
   "functions": {
     "api/**/*.js": {
       "runtime": "nodejs20.x",
@@ -47,6 +40,5 @@
         }
       ]
     }
-  ],
-  "outputDirectory": ".vercel/output"
+  ]
 }
