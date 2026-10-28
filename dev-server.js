@@ -19,6 +19,7 @@ const health = require('./api/health.js').default;
 const spec = require('./api/walmart-spec.js').default;
 const authorize = require('./api/v3/authorize.js').default;
 const token = require('./api/v3/token.js').default;
+const vendorProducts = require('./api/v3/vendor-products.js').default;
 
 const server = http.createServer(async (req, res) => {
   const url = new URL(req.url || '/', `http://localhost:${PORT}`);
@@ -86,6 +87,29 @@ const server = http.createServer(async (req, res) => {
       return;
     }
 
+    // Vendor-specific specs: /api/walmart-spec/acme or /api/walmart-spec/abc
+    if (pathname.startsWith('/api/walmart-spec/')) {
+      const vendor = pathname.split('/')[3];
+      const vendorSpecPath = path.join(__dirname, `${vendor}-spec.json`);
+      try {
+        const vendorSpec = fs.readFileSync(vendorSpecPath, 'utf8');
+        expressRes.setHeader('Content-Type', 'application/json; charset=utf-8');
+        expressRes.status(200).end(vendorSpec);
+      } catch (err) {
+        expressRes.status(404).json({ error: 'Vendor spec not found', vendor, message: err.message });
+      }
+      return;
+    }
+
+    // Vendor index
+    if (pathname === '/api/vendors' || pathname === '/vendor-index') {
+      const indexPath = path.join(__dirname, 'vendor-index.json');
+      const index = fs.readFileSync(indexPath, 'utf8');
+      expressRes.setHeader('Content-Type', 'application/json; charset=utf-8');
+      expressRes.status(200).end(index);
+      return;
+    }
+
     // TrackIQ uses /v3/* (WALMART_BASE_URL); Vercel-style paths keep /api/v3/*.
     if (pathname === '/api/v3/items' || pathname === '/v3/items') {
       items(req, expressRes);
@@ -112,6 +136,11 @@ const server = http.createServer(async (req, res) => {
       return;
     }
 
+    if (pathname === '/api/v3/products' || pathname === '/v3/products') {
+      vendorProducts(req, expressRes);
+      return;
+    }
+
     // 404
     res.writeHead(404, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ error: 'Not found', path: pathname }));
@@ -133,9 +162,11 @@ server.listen(PORT, () => {
   console.log(`📊 API Spec:        http://localhost:${PORT}/api/walmart-spec`);
   console.log('');
   console.log('📦 Endpoints:');
-  console.log(`   GET /api/v3/items?limit=50    (Auth: Bearer token)`);
-  console.log(`   GET /api/v3/orders?limit=50   (Auth: Bearer token)`);
-  console.log(`   GET /api/v3/returns?limit=200 (Auth: Bearer token)`);
+  console.log(`   GET /api/v3/items?limit=50              (Auth: Bearer token)`);
+  console.log(`   GET /api/v3/orders?limit=50             (Auth: Bearer token)`);
+  console.log(`   GET /api/v3/returns?limit=200           (Auth: Bearer token)`);
+  console.log(`   GET /api/v3/products?vendor=acme        (Vendor products)`);
+  console.log(`   GET /api/v3/products?vendor=abc         (Vendor products)`);
   console.log('');
   console.log('🧪 Test with curl:');
   console.log(`   curl -H "Authorization: Bearer test-token" http://localhost:${PORT}/api/v3/items`);

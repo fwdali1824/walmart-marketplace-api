@@ -1,0 +1,45 @@
+{
+  "vendors": [
+    {
+      "id": "acme",
+      "name": "Acme Electronics Inc",
+      "sellerId": "acme-electronics-001",
+      "envFile": ".env.acme",
+      "specFile": "acme-spec.json",
+      "active": true,
+      "credentials": {
+        "partnerId": "acme_electronics_001"
+      },
+      "urls": {
+        "authorize": "http://localhost:3000/v3/authorize",
+        "spec": "http://localhost:3000/api/walmart-spec/acme",
+        "orders": "http://localhost:3000/api/v3/acme/orders",
+        "items": "http://localhost:3000/api/v3/acme/items"
+      }
+    },
+    {
+      "id": "abc",
+      "name": "ABC Computers Inc",
+      "sellerId": "abc-computers-001",
+      "envFile": ".env.abc",
+      "specFile": "abc-spec.json",
+      "active": true,
+      "credentials": {
+        "partnerId": "abc_computers_001"
+      },
+      "urls": {
+        "authorize": "http://localhost:3000/v3/authorize",
+        "spec": "http://localhost:3000/api/walmart-spec/abc",
+        "orders": "http://localhost:3000/api/v3/abc/orders",
+        "items": "http://localhost:3000/api/v3/abc/items"
+      }
+    }
+  ],
+  "global": {
+    "environment": "local",
+    "baseUrl": "http://localhost:3000",
+    "tokenCacheTtl": 900,
+    "tokenRefreshBeforeExpiry": 120,
+    "cacheDriver": "database"
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "vendor": {
+    "id": "acme",
+    "name": "Acme Electronics Inc",
+    "sellerId": "acme-electronics-001"
+  },
+  "category": "Home Appliances & Electronics",
+  "products": [
+    {
+      "sku": "ACME-OV-001",
+      "name": "Professional Convection Oven - Stainless Steel",
+      "description": "High-capacity convection oven with 6-rack capacity, digital temperature control, and turbo convection fan",
+      "category": "Kitchen Appliances",
+      "price": {
+        "amount": 899.99,
+        "currency": "USD"
+      },
+      "stock": 45,
+      "specifications": {
+        "capacity": "50L",
+        "power": "3600W",
+        "material": "Stainless Steel",
+        "warranty": "2 years"
+      }
+    },
+    {
+      "sku": "ACME-WM-002",
+      "name": "Front-Load Washing Machine - 5.5 Cu.Ft",
+      "description": "Energy-efficient front-load washer with steam clean, sanitize cycle, and smart connectivity",
+      "category": "Laundry Appliances",
+      "price": {
+        "amount": 749.99,
+        "currency": "USD"
+      },
+      "stock": 32,
+      "specifications": {
+        "capacity": "5.5 Cu.Ft",
+        "cycles": 12,
+        "water_temperature": "Cold/Warm/Hot",
+        "warranty": "1 year"
+      }
+    },
+    {
+      "sku": "ACME-RF-003",
+      "name": "Side-by-Side Refrigerator - 25.5 Cu.Ft",
+      "description": "Smart refrigerator with adjustable shelves, ice/water dispenser, and temperature control",
+      "category": "Kitchen Appliances",
+      "price": {
+        "amount": 1299.99,
+        "currency": "USD"
+      },
+      "stock": 18,
+      "specifications": {
+        "capacity": "25.5 Cu.Ft",
+        "doors": "2 Side-by-Side",
+        "features": ["Ice Maker", "Water Dispenser", "Smart Display"],
+        "warranty": "2 years"
+      }
+    },
+    {
+      "sku": "ACME-DW-004",
+      "name": "Built-in Dishwasher - Stainless Steel",
+      "description": "18-inch built-in dishwasher with 6 wash cycles, heated dry, and quiet operation",
+      "category": "Kitchen Appliances",
+      "price": {
+        "amount": 499.99,
+        "currency": "USD"
+      },
+      "stock": 56,
+      "specifications": {
+        "capacity": "18 place settings",
+        "cycles": 6,
+        "noise_level": "46dB",
+        "warranty": "1 year"
+      }
+    },
+    {
+      "sku": "ACME-AC-005",
+      "name": "Window Air Conditioner - 12000 BTU",
+      "description": "Efficient cooling for rooms up to 450 sq ft with programmable timer and remote control",
+      "category": "Climate Control",
+      "price": {
+        "amount": 329.99,
+        "currency": "USD"
+      },
+      "stock": 72,
+      "specifications": {
+        "btu": "12000",
+        "coverage": "450 sq ft",
+        "noise_level": "72dB",
+        "warranty": "1 year"
+      }
+    },
+    {
+      "sku": "ACME-MW-006",
+      "name": "Over-the-Range Microwave - 1.6 Cu.Ft",
+      "description": "1600W microwave with sensor cooking, ventilation fan, and stainless steel finish",
+      "category": "Kitchen Appliances",
+      "price": {
+        "amount": 399.99,
+        "currency": "USD"
+      },
+      "stock": 41,
+      "specifications": {
+        "capacity": "1.6 Cu.Ft",
+        "wattage": "1600W",
+        "features": ["Sensor Cooking", "Ventilation Fan"],
+        "warranty": "1 year"
+      }
+    },
+    {
+      "sku": "ACME-HT-007",
+      "name": "Digital Space Heater - Portable",
+      "description": "Compact heater with 1500W dual heat settings, thermostat, and safety shutoff",
+      "category": "Climate Control",
+      "price": {
+        "amount": 79.99,
+        "currency": "USD"
+      },
+      "stock": 128,
+      "specifications": {
+        "wattage": "1500W",
+        "heat_settings": 2,
+        "features": ["Thermostat", "Safety Shutoff"],
+        "warranty": "6 months"
+      }
+    },
+    {
+      "sku": "ACME-VH-008",
+      "name": "Handheld Vacuum Cleaner - Cordless",
+      "description": "Lightweight cordless vacuum with LED display, multiple attachments, and bagless design",
+      "category": "Home Cleaning",
+      "price": {
+        "amount": 289.99,
+        "currency": "USD"
+      },
+      "stock": 64,
+      "specifications": {
+        "battery_life": "45 minutes",
+        "power": "120AW",
+        "attachments": 4,
+        "warranty": "2 years"
+      }
+    }
+  ]
+}

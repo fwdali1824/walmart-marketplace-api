@@ -1,0 +1,183 @@
+{
+  "vendor": {
+    "id": "abc",
+    "name": "ABC Computers Inc",
+    "sellerId": "abc-computers-001"
+  },
+  "category": "Computers & IT Equipment",
+  "products": [
+    {
+      "sku": "ABC-PC-001",
+      "name": "Desktop Computer - Intel i7 High Performance",
+      "description": "Gaming and professional workstation with Intel i7-13700K, 16GB RAM, 512GB SSD, RTX 3060",
+      "category": "Desktop Computers",
+      "price": {
+        "amount": 1599.99,
+        "currency": "USD"
+      },
+      "stock": 24,
+      "specifications": {
+        "processor": "Intel Core i7-13700K",
+        "ram": "16GB DDR5",
+        "storage": "512GB NVMe SSD",
+        "graphics": "NVIDIA RTX 3060",
+        "warranty": "3 years"
+      }
+    },
+    {
+      "sku": "ABC-LP-002",
+      "name": "Laptop - 15.6 inch FHD Business Class",
+      "description": "Business laptop with Intel Core i5, 8GB RAM, 256GB SSD, and aluminum chassis",
+      "category": "Laptops",
+      "price": {
+        "amount": 749.99,
+        "currency": "USD"
+      },
+      "stock": 38,
+      "specifications": {
+        "processor": "Intel Core i5-1235U",
+        "ram": "8GB DDR4",
+        "storage": "256GB SSD",
+        "display": "15.6 FHD",
+        "warranty": "2 years"
+      }
+    },
+    {
+      "sku": "ABC-MN-003",
+      "name": "27-inch 4K Monitor - IPS Panel",
+      "description": "Professional 4K monitor with 99% Adobe RGB, USB-C, Thunderbolt 3 and height adjustable stand",
+      "category": "Monitors",
+      "price": {
+        "amount": 899.99,
+        "currency": "USD"
+      },
+      "stock": 42,
+      "specifications": {
+        "resolution": "4K (3840x2160)",
+        "panel": "IPS",
+        "ports": ["USB-C", "Thunderbolt 3", "HDMI", "DisplayPort"],
+        "warranty": "3 years"
+      }
+    },
+    {
+      "sku": "ABC-KB-004",
+      "name": "Mechanical Keyboard - RGB Backlit",
+      "description": "Professional mechanical keyboard with Cherry MX switches, aluminum frame, and programmable keys",
+      "category": "Keyboards",
+      "price": {
+        "amount": 199.99,
+        "currency": "USD"
+      },
+      "stock": 87,
+      "specifications": {
+        "switches": "Cherry MX Brown",
+        "backlight": "RGB",
+        "frame": "Aluminum",
+        "warranty": "2 years"
+      }
+    },
+    {
+      "sku": "ABC-MS-005",
+      "name": "Ergonomic Mouse - Wireless",
+      "description": "Vertical ergonomic mouse with adjustable DPI, 8-button configuration, and 2.4GHz wireless",
+      "category": "Mice",
+      "price": {
+        "amount": 59.99,
+        "currency": "USD"
+      },
+      "stock": 156,
+      "specifications": {
+        "buttons": 8,
+        "dpi": "50-3200",
+        "connectivity": "2.4GHz Wireless",
+        "battery_life": "30 hours",
+        "warranty": "1 year"
+      }
+    },
+    {
+      "sku": "ABC-HB-006",
+      "name": "USB-C Hub - 7-in-1",
+      "description": "7-port USB-C hub with HDMI, USB 3.0 ports, SD card reader, and 100W power delivery",
+      "category": "Peripherals",
+      "price": {
+        "amount": 79.99,
+        "currency": "USD"
+      },
+      "stock": 103,
+      "specifications": {
+        "ports": 7,
+        "usb3_ports": 3,
+        "hdmi": "1x 4K@30Hz",
+        "power_delivery": "100W",
+        "warranty": "2 years"
+      }
+    },
+    {
+      "sku": "ABC-HD-007",
+      "name": "External SSD - 1TB NVMe Portable",
+      "description": "Ultra-fast portable SSD with USB-C 3.2, 1050MB/s read speed, and shock-resistant design",
+      "category": "Storage",
+      "price": {
+        "amount": 129.99,
+        "currency": "USD"
+      },
+      "stock": 67,
+      "specifications": {
+        "capacity": "1TB",
+        "speed": "1050MB/s read",
+        "interface": "USB-C 3.2",
+        "warranty": "5 years"
+      }
+    },
+    {
+      "sku": "ABC-WR-008",
+      "name": "WiFi 6E Router - Mesh System",
+      "description": "High-performance WiFi 6E mesh router with tri-band support and 8K OFDMA technology",
+      "category": "Networking",
+      "price": {
+        "amount": 249.99,
+        "currency": "USD"
+      },
+      "stock": 31,
+      "specifications": {
+        "standard": "WiFi 6E",
+        "bands": 3,
+        "coverage": "3000 sq ft",
+        "warranty": "3 years"
+      }
+    },
+    {
+      "sku": "ABC-HS-009",
+      "name": "Portable Headphones - Noise Cancelling",
+      "description": "Premium wireless headphones with ANC, 40-hour battery, and studio-quality sound",
+      "category": "Audio",
+      "price": {
+        "amount": 379.99,
+        "currency": "USD"
+      },
+      "stock": 45,
+      "specifications": {
+        "battery": "40 hours",
+        "anc": "Active Noise Cancelling",
+        "warranty": "2 years"
+      }
+    },
+    {
+      "sku": "ABC-WC-010",
+      "name": "Webcam - 4K Pro",
+      "description": "4K webcam with auto-focus, noise-cancelling mic, and USB-C connection",
+      "category": "Cameras",
+      "price": {
+        "amount": 189.99,
+        "currency": "USD"
+      },
+      "stock": 58,
+      "specifications": {
+        "resolution": "4K",
+        "fps": "30fps",
+        "mic": "Built-in Noise-Cancelling",
+        "warranty": "2 years"
+      }
+    }
+  ]
+}

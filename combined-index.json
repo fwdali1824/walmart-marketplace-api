@@ -1,0 +1,704 @@
+{
+  "metadata": {
+    "title": "Walmart Marketplace API - Combined Reference",
+    "version": "3.0.0",
+    "description": "Index combining Orders and Products specifications"
+  },
+  "sources": [
+    {
+      "name": "orders.json",
+      "description": "Order management endpoints",
+      "paths": [
+        "/v3/orders",
+        "/v3/orders/{orderId}"
+      ]
+    },
+    {
+      "name": "products.json",
+      "description": "Product/Items management endpoints",
+      "paths": [
+        "/v3/items",
+        "/v3/items/search"
+      ]
+    },
+    {
+      "name": "walmart-spec.json",
+      "description": "Complete original specification with all endpoints"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "TokenResponse": {
+        "type": "object",
+        "properties": {
+          "access_token": {
+            "type": "string",
+            "description": "Bearer token for API requests (15 minute expiry - 900 seconds)"
+          },
+          "token_type": {
+            "type": "string",
+            "enum": [
+              "Bearer"
+            ],
+            "description": "Token type is always Bearer"
+          },
+          "expires_in": {
+            "type": "integer",
+            "description": "Token expiration in seconds (900 = 15 minutes)"
+          },
+          "refresh_token": {
+            "type": "string",
+            "description": "Refresh token for obtaining new access tokens (1 year expiry). Only returned for authorization_code grant type"
+          }
+        },
+        "required": [
+          "access_token",
+          "token_type",
+          "expires_in"
+        ]
+      },
+      "Address": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "address1": {
+            "type": "string"
+          },
+          "address2": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "postalCode": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "addressType": {
+            "type": "string",
+            "enum": [
+              "RESIDENTIAL",
+              "COMMERCIAL"
+            ]
+          }
+        }
+      },
+      "Money": {
+        "type": "object",
+        "properties": {
+          "currency": {
+            "type": "string",
+            "default": "USD"
+          },
+          "amount": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "Charge": {
+        "type": "object",
+        "properties": {
+          "chargeType": {
+            "type": "string",
+            "enum": [
+              "PRODUCT",
+              "SHIPPING",
+              "TAX",
+              "FEE",
+              "DISCOUNT"
+            ]
+          },
+          "chargeName": {
+            "type": "string"
+          },
+          "chargeAmount": {
+            "$ref": "#/components/schemas/Money"
+          }
+        }
+      },
+      "OrderLineStatus": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "Created",
+              "Acknowledged",
+              "Cancelled",
+              "Shipped",
+              "Delivered"
+            ]
+          },
+          "statusQuantity": {
+            "type": "object",
+            "properties": {
+              "unitOfMeasure": {
+                "type": "string"
+              },
+              "amount": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "OrderLine": {
+        "type": "object",
+        "properties": {
+          "lineNumber": {
+            "type": "string"
+          },
+          "item": {
+            "type": "object",
+            "properties": {
+              "productName": {
+                "type": "string"
+              },
+              "sku": {
+                "type": "string"
+              },
+              "upc": {
+                "type": "string"
+              },
+              "productId": {
+                "type": "string"
+              }
+            }
+          },
+          "charges": {
+            "type": "object",
+            "properties": {
+              "charge": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Charge"
+                }
+              }
+            }
+          },
+          "orderLineQuantity": {
+            "type": "object",
+            "properties": {
+              "unitOfMeasure": {
+                "type": "string"
+              },
+              "amount": {
+                "type": "string"
+              }
+            }
+          },
+          "statusDate": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Epoch milliseconds"
+          },
+          "orderLineStatuses": {
+            "type": "object",
+            "properties": {
+              "orderLineStatus": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/OrderLineStatus"
+                }
+              }
+            }
+          }
+        }
+      },
+      "ShippingInfo": {
+        "type": "object",
+        "properties": {
+          "phone": {
+            "type": "string"
+          },
+          "estimatedDeliveryDate": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Epoch milliseconds"
+          },
+          "estimatedShipDate": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Epoch milliseconds"
+          },
+          "methodCode": {
+            "type": "string",
+            "enum": [
+              "Standard",
+              "Express",
+              "Overnight",
+              "TWODay"
+            ]
+          },
+          "postalAddress": {
+            "$ref": "#/components/schemas/Address"
+          }
+        }
+      },
+      "Order": {
+        "type": "object",
+        "properties": {
+          "purchaseOrderId": {
+            "type": "string"
+          },
+          "customerOrderId": {
+            "type": "string"
+          },
+          "customerEmailId": {
+            "type": "string"
+          },
+          "orderDate": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Epoch milliseconds"
+          },
+          "shippingInfo": {
+            "$ref": "#/components/schemas/ShippingInfo"
+          },
+          "orderLines": {
+            "type": "object",
+            "properties": {
+              "orderLine": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/OrderLine"
+                }
+              }
+            }
+          }
+        }
+      },
+      "OrdersListResponse": {
+        "type": "object",
+        "properties": {
+          "list": {
+            "type": "object",
+            "properties": {
+              "meta": {
+                "type": "object",
+                "properties": {
+                  "totalCount": {
+                    "type": "integer"
+                  },
+                  "limit": {
+                    "type": "integer"
+                  },
+                  "nextCursor": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                }
+              },
+              "elements": {
+                "type": "object",
+                "properties": {
+                  "order": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Order"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "ShipmentInfo": {
+        "type": "object",
+        "properties": {
+          "lineNumbers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "trackingNumber": {
+            "type": "string"
+          },
+          "carrierName": {
+            "type": "string"
+          },
+          "estimatedDeliveryDate": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "Feed": {
+        "type": "object",
+        "properties": {
+          "feedId": {
+            "type": "string"
+          },
+          "feedType": {
+            "type": "string",
+            "enum": [
+              "inventory",
+              "product",
+              "order",
+              "price"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "RECEIVED",
+              "PROCESSING",
+              "COMPLETED",
+              "ERROR"
+            ]
+          },
+          "timestamp": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "FeedStatus": {
+        "type": "object",
+        "properties": {
+          "feedId": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "RECEIVED",
+              "PROCESSING",
+              "COMPLETED",
+              "ERROR"
+            ]
+          },
+          "itemsReceived": {
+            "type": "integer"
+          },
+          "itemsSucceeded": {
+            "type": "integer"
+          },
+          "itemsFailed": {
+            "type": "integer"
+          },
+          "itemsProcessing": {
+            "type": "integer"
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "InventoryItem": {
+        "type": "object",
+        "properties": {
+          "sku": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "integer"
+          },
+          "fulfillmentLatency": {
+            "type": "integer",
+            "description": "Days"
+          }
+        },
+        "required": [
+          "sku",
+          "quantity"
+        ]
+      },
+      "Product": {
+        "type": "object",
+        "properties": {
+          "sku": {
+            "type": "string"
+          },
+          "upc": {
+            "type": "string"
+          },
+          "gtin": {
+            "type": "string"
+          },
+          "productType": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number"
+          },
+          "category": {
+            "type": "string"
+          },
+          "brand": {
+            "type": "string"
+          },
+          "manufacturer": {
+            "type": "string"
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "url": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "PRIMARY",
+                    "SECONDARY"
+                  ]
+                }
+              }
+            }
+          },
+          "attributes": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ACTIVE",
+              "INACTIVE",
+              "RETIRED"
+            ]
+          },
+          "variantGroupId": {
+            "type": "string"
+          }
+        }
+      },
+      "ReturnOrder": {
+        "type": "object",
+        "properties": {
+          "returnOrderId": {
+            "type": "string"
+          },
+          "purchaseOrderId": {
+            "type": "string"
+          },
+          "returnOrderDate": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "INITIATED",
+              "SHIPPED",
+              "RECEIVED",
+              "REFUNDED",
+              "COMPLETED"
+            ]
+          }
+        }
+      },
+      "Report": {
+        "type": "object",
+        "properties": {
+          "reportId": {
+            "type": "string"
+          },
+          "reportType": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "PENDING",
+              "PROCESSING",
+              "READY",
+              "FAILED"
+            ]
+          },
+          "generatedDate": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "downloadUrl": {
+            "type": "string"
+          }
+        }
+      },
+      "NotificationSubscription": {
+        "type": "object",
+        "properties": {
+          "subscriptionId": {
+            "type": "string"
+          },
+          "eventType": {
+            "type": "string"
+          },
+          "webhookUrl": {
+            "type": "string"
+          },
+          "active": {
+            "type": "boolean"
+          }
+        }
+      },
+      "PerformanceMetrics": {
+        "type": "object",
+        "properties": {
+          "validTrackingRate": {
+            "type": "number"
+          },
+          "onTimeShipmentRate": {
+            "type": "number"
+          },
+          "onTimeDeliveryRate": {
+            "type": "number"
+          },
+          "returnRate": {
+            "type": "number"
+          },
+          "negativeFeedbackRate": {
+            "type": "number"
+          },
+          "cancelationRate": {
+            "type": "number"
+          }
+        }
+      },
+      "Campaign": {
+        "type": "object",
+        "properties": {
+          "campaignId": {
+            "type": "string"
+          },
+          "campaignName": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ACTIVE",
+              "PAUSED",
+              "ENDED"
+            ]
+          },
+          "budget": {
+            "type": "number"
+          },
+          "spend": {
+            "type": "number"
+          },
+          "impressions": {
+            "type": "integer"
+          },
+          "clicks": {
+            "type": "integer"
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "details": {
+            "type": "object"
+          },
+          "timestamp": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "ItemResponseRow": {
+        "type": "object",
+        "properties": {
+          "wpid": {
+            "type": "string"
+          },
+          "sku": {
+            "type": "string"
+          },
+          "productName": {
+            "type": "string"
+          },
+          "brand": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "publishedStatus": {
+            "type": "string"
+          },
+          "price": {
+            "type": "object",
+            "properties": {
+              "currency": {
+                "type": "string"
+              },
+              "amount": {
+                "type": "number"
+              }
+            }
+          },
+          "unitCost": {
+            "type": "number"
+          },
+          "inventoryQuantity": {
+            "type": "integer"
+          },
+          "updatedAt": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}

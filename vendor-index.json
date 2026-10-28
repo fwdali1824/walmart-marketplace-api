@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "title": "Multi-Vendor Walmart Marketplace API Index",
+    "version": "1.0.0",
+    "description": "Central index for all vendor-specific Walmart API specifications",
+    "createdAt": "2026-10-28"
+  },
+  "vendors": [
+    {
+      "name": "Acme Electronics Inc",
+      "sellerId": "acme-electronics-001",
+      "specFile": "acme-spec.json",
+      "description": "Electronics and gadgets seller",
+      "endpoints": {
+        "spec": "/api/walmart-spec/acme",
+        "orders": "/api/v3/acme/orders",
+        "products": "/api/v3/acme/items",
+        "health": "/api/health/acme"
+      }
+    },
+    {
+      "name": "ABC Computers Inc",
+      "sellerId": "abc-computers-001",
+      "specFile": "abc-spec.json",
+      "description": "Computer and IT equipment seller",
+      "endpoints": {
+        "spec": "/api/walmart-spec/abc",
+        "orders": "/api/v3/abc/orders",
+        "products": "/api/v3/abc/items",
+        "health": "/api/health/abc"
+      }
+    }
+  ],
+  "masterSpec": {
+    "file": "walmart-spec.json",
+    "description": "Combined specification with all endpoints (shared)"
+  },
+  "usage": {
+    "getVendorSpec": "GET /api/walmart-spec/:vendorId",
+    "getMasterSpec": "GET /api/walmart-spec",
+    "example": "curl http://localhost:3000/api/walmart-spec/acme"
+  }
+}

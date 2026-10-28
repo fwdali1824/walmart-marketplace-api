@@ -26,7 +26,7 @@ function handler(req, res) {
   const parsedLimit = Math.min(Math.max(parseInt(limit, 10) || 50, 1), 200);
   const parsedOffset = Math.max(parseInt(offset, 10) || 0, 0);
 
-  const { items } = loadCatalog();
+  const { items } = loadCatalog(req.headers);
   const total = items.length;
   const slice = items.slice(parsedOffset, parsedOffset + parsedLimit);
   const next = parsedOffset + slice.length;

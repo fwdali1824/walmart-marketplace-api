@@ -25,7 +25,7 @@ function handler(req, res) {
   const { limit = '200' } = req.query;
   const parsedLimit = Math.min(Math.max(parseInt(limit, 10) || 200, 1), 500);
 
-  const { returns } = loadCatalog();
+  const { returns } = loadCatalog(req.headers);
   const slice = returns.slice(0, parsedLimit);
 
   res.status(200).json({

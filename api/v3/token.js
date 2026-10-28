@@ -4,7 +4,28 @@
  * Client credentials: HTTP Basic (client_id:client_secret) — same as production
  * and TrackIQ's WalmartAuthenticator. Body client_id / client_secret still work
  * for manual curl tests.
+ *
+ * Seller identity is derived from client_id so ABC vs Acme installs don't collide.
  */
+const CLIENTS = {
+  wm_abc_9be57d5d7f48fd9a169d8848: {
+    seller_id: 'abc-computers-001',
+    partner_id: 'abc_computers_001',
+    seller_name: 'ABC Computers Inc',
+  },
+  wm_acme_9be57d5d7f48fd9a169d8848: {
+    seller_id: 'acme-electronics-001',
+    partner_id: 'acme_electronics_001',
+    seller_name: 'Acme Electronics Inc',
+  },
+  // Legacy / default local client (track-app .env.example)
+  wm_9be57d5d7f48fd9a169d8848: {
+    seller_id: 'acme-electronics-001',
+    partner_id: 'acme_electronics_001',
+    seller_name: 'Acme Electronics Inc',
+  },
+};
+
 function parseBasicAuth(req) {
   const header = req.headers.authorization || req.headers.Authorization || '';
   if (!header.startsWith('Basic ')) {
@@ -27,10 +48,28 @@ function parseBasicAuth(req) {
   }
 }
 
-function mockAccessToken(sub = 'seller_001') {
+function sellerFor(clientId) {
+  return (
+    CLIENTS[clientId] || {
+      seller_id: 'seller_001',
+      partner_id: clientId || 'unknown',
+      seller_name: 'Mock Walmart Seller',
+    }
+  );
+}
+
+function mockAccessToken(seller) {
   return (
     'eyJraWQiOiI1MWY3MzIzN2I5NzQzYjQ2NTkxNzg2OTJiOTZkOTBjMyIsImFsZyI6IlJTMjU2In0.' +
-    Buffer.from(JSON.stringify({ sub, name: 'Acme Electronics Inc', iat: 1609459200, exp: 1609545600 })).toString('base64url') +
+    Buffer.from(
+      JSON.stringify({
+        sub: seller.seller_id,
+        name: seller.seller_name,
+        partner_id: seller.partner_id,
+        iat: 1609459200,
+        exp: 1609545600,
+      })
+    ).toString('base64url') +
     '.signature_mock'
   );
 }
@@ -64,6 +103,7 @@ function handler(req, res) {
       const refreshToken = params.get('refresh_token');
       const clientId = params.get('client_id') || basic.clientId;
       const clientSecret = params.get('client_secret') || basic.clientSecret;
+      const seller = sellerFor(clientId);
 
       if (grantType === 'authorization_code') {
         if (!code || !clientId) {
@@ -79,12 +119,13 @@ function handler(req, res) {
 
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({
-          access_token: mockAccessToken('seller_001'),
+          access_token: mockAccessToken(seller),
           refresh_token: newRefreshToken,
           token_type: 'Bearer',
           expires_in: 86400,
-          seller_id: 'seller_001',
-          seller_name: 'Acme Electronics Inc',
+          seller_id: seller.seller_id,
+          partner_id: seller.partner_id,
+          seller_name: seller.seller_name,
         }));
         return;
       }
@@ -103,10 +144,13 @@ function handler(req, res) {
 
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({
-          access_token: mockAccessToken('seller_001'),
+          access_token: mockAccessToken(seller),
           refresh_token: newRefreshToken,
           token_type: 'Bearer',
           expires_in: 86400,
+          seller_id: seller.seller_id,
+          partner_id: seller.partner_id,
+          seller_name: seller.seller_name,
         }));
         return;
       }
@@ -123,7 +167,7 @@ function handler(req, res) {
 
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({
-          access_token: mockAccessToken('client_creds'),
+          access_token: mockAccessToken(seller),
           token_type: 'Bearer',
           expires_in: 3600,
         }));

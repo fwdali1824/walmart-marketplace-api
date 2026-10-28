@@ -29,7 +29,7 @@ function handler(req, res) {
   const start = parseMs(lastModifiedStartDate || createdStartDate);
   const end = parseMs(lastModifiedEndDate || createdEndDate);
 
-  let { orders } = loadCatalog();
+  let { orders } = loadCatalog(req.headers);
 
   if (start != null || end != null) {
     orders = orders.filter((o) => {

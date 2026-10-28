@@ -128,6 +128,11 @@ function handler(req, res) {
     <div class="info-box">
       <strong>Application:</strong>
       ${client_id || 'Unknown Client'}
+      ${client_id && client_id.includes('abc')
+        ? '<br><strong>Seller:</strong> ABC Computers Inc (abc-computers-001)'
+        : client_id && client_id.includes('acme')
+          ? '<br><strong>Seller:</strong> Acme Electronics Inc (acme-electronics-001)'
+          : ''}
     </div>
 
     <div class="permissions">
