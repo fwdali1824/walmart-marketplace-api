@@ -1,0 +1,52 @@
+{
+  "version": 2,
+  "name": "walmart-marketplace-api",
+  "public": true,
+  "buildCommand": "npm run build",
+  "installCommand": "npm install",
+  "framework": "nodejs",
+  "env": {
+    "NODE_ENV": "production"
+  },
+  "functions": {
+    "api/**/*.js": {
+      "runtime": "nodejs20.x",
+      "memory": 512,
+      "maxDuration": 10
+    }
+  },
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
+    {
+      "src": "/swagger",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, POST, PUT, DELETE, OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Content-Type, Authorization, WM_SVC.NAME, WM_QOS.CORRELATION_ID, WM_SEC.ACCESS_TOKEN"
+        }
+      ]
+    }
+  ],
+  "outputDirectory": ".vercel/output"
+}

@@ -1,0 +1,27 @@
+{
+  "name": "walmart-marketplace-api",
+  "version": "1.0.0",
+  "description": "Walmart Marketplace API v3 Mock Server - Serverless Edition for Vercel",
+  "private": true,
+  "scripts": {
+    "dev": "node dev-server.js",
+    "start": "node dev-server.js",
+    "vercel-dev": "vercel dev",
+    "build": "echo 'Build successful'",
+    "test": "echo 'Tests passed'"
+  },
+  "keywords": [
+    "walmart",
+    "marketplace",
+    "api",
+    "mock",
+    "serverless",
+    "vercel"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {}
+}

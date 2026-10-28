@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Walmart Marketplace API v3 - Swagger UI</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@3/swagger-ui.css">
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background: #fafafa;
+        font-family: sans-serif;
+      }
+      .swagger-ui {
+        max-width: 100%;
+      }
+      .topbar {
+        background-color: #0071ce;
+        padding: 20px;
+        color: white;
+      }
+      .topbar h1 {
+        margin: 0;
+        font-size: 24px;
+      }
+      .topbar p {
+        margin: 5px 0 0 0;
+        font-size: 14px;
+        opacity: 0.9;
+      }
+      .api-info {
+        background: #f0f0f0;
+        padding: 15px 20px;
+        border-bottom: 1px solid #ddd;
+        font-size: 13px;
+      }
+      .api-info strong {
+        color: #0071ce;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="topbar">
+      <h1>🛒 Walmart Marketplace API v3</h1>
+      <p>Complete API documentation with 40+ endpoints for Orders, Inventory, Products, and more</p>
+    </div>
+    <div class="api-info">
+      <strong>Base URL:</strong> This deployment on Vercel<br>
+      <strong>Authentication:</strong> OAuth 2.0 Bearer Token (see /v3/token endpoint)<br>
+      <strong>Token Endpoint:</strong> POST /v3/token (requires Authorization: Basic header)
+    </div>
+    <div id="swagger-ui"></div>
+    <script src="https://cdn.jsdelivr.net/npm/swagger-ui-dist@3/swagger-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swagger-ui-dist@3/swagger-ui-bundle.js"></script>
+    <script>
+      window.onload = function() {
+        const ui = SwaggerUIBundle({
+          url: "/api/walmart-spec",
+          dom_id: '#swagger-ui',
+          deepLinking: true,
+          presets: [
+            SwaggerUIBundle.presets.apis,
+            SwaggerUIBundle.SwaggerUIStandalonePreset
+          ],
+          layout: "BaseLayout",
+          plugins: [
+            SwaggerUIBundle.plugins.DownloadUrl
+          ],
+          defaultModelsExpandDepth: 1,
+          defaultModelExpandDepth: 1,
+          persistAuthorization: true,
+          requestInterceptor: (request) => {
+            request.headers['Accept'] = 'application/json';
+            return request;
+          },
+          responseInterceptor: (response) => {
+            return response;
+          }
+        })
+        window.ui = ui
+      }
+    </script>
+  </body>
+</html>

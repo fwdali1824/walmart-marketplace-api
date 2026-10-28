@@ -1,0 +1,17 @@
+node_modules/
+.env
+.env.local
+.env.*.local
+.vercel/
+*.log
+.DS_Store
+.claude/
+start-all.sh
+start-mock-server.sh
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+dist/
+build/
