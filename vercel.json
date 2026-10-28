@@ -1,6 +1,16 @@
 {
   "version": 2,
   "name": "walmart-marketplace-api",
+  "env": {
+    "WALMART_ENV": "production",
+    "WALMART_BASE_URL": "https://walmart-marketplace-api-64an-git-main-fawad10.vercel.app",
+    "WALMART_CLIENT_ID": "wm_9be57d5d7f48fd9a169d8848",
+    "WALMART_INCLUDE_TEST_ORDERS": "false",
+    "WALMART_FORCE_SDK": "false",
+    "TOKEN_CACHE_TTL": "900",
+    "TOKEN_REFRESH_BEFORE_EXPIRY": "120",
+    "CACHE_DRIVER": "database"
+  },
   "functions": {
     "api/**/*.js": {
       "maxDuration": 10
