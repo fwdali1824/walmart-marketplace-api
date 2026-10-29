@@ -20,6 +20,8 @@ const spec = require('./api/walmart-spec.js').default;
 const authorize = require('./api/v3/authorize.js').default;
 const token = require('./api/v3/token.js').default;
 const vendorProducts = require('./api/v3/vendor-products.js').default;
+const semCampaigns = require('./api/v3/advertising/sem/campaigns.js').default;
+const semPerformance = require('./api/v3/advertising/sem/performance-summary.js').default;
 
 const server = http.createServer(async (req, res) => {
   const url = new URL(req.url || '/', `http://localhost:${PORT}`);
@@ -141,6 +143,23 @@ const server = http.createServer(async (req, res) => {
       return;
     }
 
+    // Walmart SEM Advertising (WalmartAdvertisingApi)
+    if (
+      pathname === '/v3/advertising/sem/campaigns' ||
+      pathname === '/api/v3/advertising/sem/campaigns'
+    ) {
+      semCampaigns(req, expressRes);
+      return;
+    }
+
+    if (
+      pathname === '/v3/advertising/sem/campaigns/performance-summary' ||
+      pathname === '/api/v3/advertising/sem/campaigns/performance-summary'
+    ) {
+      await semPerformance(req, expressRes);
+      return;
+    }
+
     // 404
     res.writeHead(404, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ error: 'Not found', path: pathname }));
@@ -167,9 +186,13 @@ server.listen(PORT, () => {
   console.log(`   GET /api/v3/returns?limit=200           (Auth: Bearer token)`);
   console.log(`   GET /api/v3/products?vendor=acme        (Vendor products)`);
   console.log(`   GET /api/v3/products?vendor=abc         (Vendor products)`);
+  console.log(`   GET /v3/advertising/sem/campaigns       (SEM campaigns)`);
+  console.log(`   POST /v3/advertising/sem/campaigns/performance-summary`);
   console.log('');
   console.log('🧪 Test with curl:');
   console.log(`   curl -H "Authorization: Bearer test-token" http://localhost:${PORT}/api/v3/items`);
+  console.log(`   curl -H "Authorization: Bearer test" -H "WM_SEC.ACCESS_TOKEN: test" \\`);
+  console.log(`        http://localhost:${PORT}/v3/advertising/sem/campaigns`);
   console.log('');
   console.log('Press Ctrl+C to stop');
   console.log('');

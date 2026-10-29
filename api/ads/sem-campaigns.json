@@ -1,0 +1,189 @@
+{
+  "campaigns": [
+    {
+      "campaignId": "SEM-1001",
+      "name": "Brand Defense \u2014 USB-C Chargers",
+      "status": "Live",
+      "startDate": "2026-01-15",
+      "endDate": null,
+      "biddingStrategyType": "AUTO",
+      "dailyBudget": 75.0,
+      "totalBudget": 2500.0,
+      "targetRoas": 3.5,
+      "skus": [
+        "SKU-CHARGER-01",
+        "SKU-CHARGER-02"
+      ]
+    },
+    {
+      "campaignId": "SEM-1002",
+      "name": "Category \u2014 Bluetooth Speakers",
+      "status": "Live",
+      "startDate": "2026-02-01",
+      "endDate": null,
+      "biddingStrategyType": "MANUAL",
+      "dailyBudget": 120.0,
+      "totalBudget": 5000.0,
+      "targetRoas": 4.0,
+      "skus": [
+        "SKU-SPEAKER-01",
+        "SKU-SPEAKER-07"
+      ]
+    },
+    {
+      "campaignId": "SEM-1003",
+      "name": "Promo \u2014 Phone Cases Spring",
+      "status": "Paused",
+      "startDate": "2026-03-01",
+      "endDate": "2026-04-30",
+      "biddingStrategyType": "AUTO",
+      "dailyBudget": 40.0,
+      "totalBudget": 800.0,
+      "targetRoas": 2.8,
+      "skus": [
+        "SKU-CASE-01",
+        "SKU-CASE-03",
+        "SKU-CASE-09"
+      ]
+    },
+    {
+      "campaignId": "SEM-1004",
+      "name": "Competitor Conquest \u2014 Headphones",
+      "status": "Live",
+      "startDate": "2026-04-10",
+      "endDate": null,
+      "biddingStrategyType": "MANUAL",
+      "dailyBudget": 95.0,
+      "totalBudget": null,
+      "targetRoas": 3.2,
+      "skus": [
+        "SKU-HEADPHONE-02"
+      ]
+    },
+    {
+      "campaignId": "SEM-1005",
+      "name": "New ASIN Launch \u2014 Smartwatches",
+      "status": "Scheduled",
+      "startDate": "2026-11-01",
+      "endDate": "2026-12-15",
+      "biddingStrategyType": "AUTO",
+      "dailyBudget": 150.0,
+      "totalBudget": 4500.0,
+      "targetRoas": 2.5,
+      "skus": [
+        "SKU-WATCH-01",
+        "SKU-WATCH-02"
+      ]
+    },
+    {
+      "campaignId": "SEM-1006",
+      "name": "Holiday Gift Guide \u2014 Accessories",
+      "status": "Ended",
+      "startDate": "2025-11-15",
+      "endDate": "2025-12-31",
+      "biddingStrategyType": "MANUAL",
+      "dailyBudget": 200.0,
+      "totalBudget": 6000.0,
+      "targetRoas": 3.0,
+      "skus": [
+        "SKU-ACC-11",
+        "SKU-ACC-12",
+        "SKU-ACC-15"
+      ]
+    },
+    {
+      "campaignId": "SEM-1007",
+      "name": "Brand Defense \u2014 Keyboards",
+      "status": "Live",
+      "startDate": "2026-05-01",
+      "endDate": null,
+      "biddingStrategyType": "AUTO",
+      "dailyBudget": 85.0,
+      "totalBudget": 3200.0,
+      "targetRoas": 3.4,
+      "skus": [
+        "SKU-KB-01",
+        "SKU-KB-02"
+      ]
+    },
+    {
+      "campaignId": "SEM-1008",
+      "name": "Category \u2014 Webcams",
+      "status": "Live",
+      "startDate": "2026-05-20",
+      "endDate": null,
+      "biddingStrategyType": "MANUAL",
+      "dailyBudget": 60.0,
+      "totalBudget": 1800.0,
+      "targetRoas": 3.1,
+      "skus": [
+        "SKU-CAM-01"
+      ]
+    },
+    {
+      "campaignId": "SEM-1009",
+      "name": "Promo \u2014 Back to School Laptops",
+      "status": "Paused",
+      "startDate": "2026-07-01",
+      "endDate": "2026-09-15",
+      "biddingStrategyType": "AUTO",
+      "dailyBudget": 220.0,
+      "totalBudget": 9000.0,
+      "targetRoas": 2.9,
+      "skus": [
+        "SKU-LAP-01",
+        "SKU-LAP-03"
+      ]
+    },
+    {
+      "campaignId": "SEM-1010",
+      "name": "Competitor Conquest \u2014 Monitors",
+      "status": "Live",
+      "startDate": "2026-06-12",
+      "endDate": null,
+      "biddingStrategyType": "MANUAL",
+      "dailyBudget": 110.0,
+      "totalBudget": null,
+      "targetRoas": 3.6,
+      "skus": [
+        "SKU-MON-02",
+        "SKU-MON-05"
+      ]
+    },
+    {
+      "campaignId": "SEM-1011",
+      "name": "New ASIN Launch \u2014 Docking Stations",
+      "status": "Scheduled",
+      "startDate": "2026-12-01",
+      "endDate": "2027-01-31",
+      "biddingStrategyType": "AUTO",
+      "dailyBudget": 70.0,
+      "totalBudget": 2100.0,
+      "targetRoas": 2.7,
+      "skus": [
+        "SKU-DOCK-01"
+      ]
+    },
+    {
+      "campaignId": "SEM-1012",
+      "name": "Evergreen \u2014 Cables & Adapters",
+      "status": "Live",
+      "startDate": "2025-08-01",
+      "endDate": null,
+      "biddingStrategyType": "MANUAL",
+      "dailyBudget": 45.0,
+      "totalBudget": 1500.0,
+      "targetRoas": 4.2,
+      "skus": [
+        "SKU-CABLE-01",
+        "SKU-CABLE-04",
+        "SKU-ADP-02"
+      ]
+    }
+  ],
+  "meta": {
+    "totalCount": 12,
+    "limit": 200,
+    "offset": 0
+  }
+}

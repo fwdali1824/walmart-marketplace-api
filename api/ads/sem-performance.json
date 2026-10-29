@@ -1,0 +1,177 @@
+{
+  "pagination": {
+    "offset": 0,
+    "limit": 200,
+    "totalCount": 12
+  },
+  "data": [
+    {
+      "campaignId": "SEM-1001",
+      "name": "Brand Defense \u2014 USB-C Chargers",
+      "status": "Live",
+      "traffic": {
+        "adspend": 1842.55,
+        "gmv": 7125.4,
+        "clicks": 3120,
+        "impressions": 98450,
+        "ctr": 0.0317,
+        "cpc": 0.59,
+        "roas": 3.87
+      }
+    },
+    {
+      "campaignId": "SEM-1002",
+      "name": "Category \u2014 Bluetooth Speakers",
+      "status": "Live",
+      "traffic": {
+        "adspend": 2650.1,
+        "gmv": 9480.0,
+        "clicks": 4210,
+        "impressions": 152300,
+        "ctr": 0.0276,
+        "cpc": 0.63,
+        "roas": 3.58
+      }
+    },
+    {
+      "campaignId": "SEM-1003",
+      "name": "Promo \u2014 Phone Cases Spring",
+      "status": "Paused",
+      "traffic": {
+        "adspend": 410.25,
+        "gmv": 980.5,
+        "clicks": 890,
+        "impressions": 42100,
+        "ctr": 0.0211,
+        "cpc": 0.46,
+        "roas": 2.39
+      }
+    },
+    {
+      "campaignId": "SEM-1004",
+      "name": "Competitor Conquest \u2014 Headphones",
+      "status": "Live",
+      "traffic": {
+        "adspend": 1320.0,
+        "gmv": 4550.75,
+        "clicks": 1980,
+        "impressions": 67800,
+        "ctr": 0.0292,
+        "cpc": 0.67,
+        "roas": 3.45
+      }
+    },
+    {
+      "campaignId": "SEM-1005",
+      "name": "New ASIN Launch \u2014 Smartwatches",
+      "status": "Scheduled",
+      "traffic": {
+        "adspend": 0,
+        "gmv": 0,
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "cpc": 0,
+        "roas": 0
+      }
+    },
+    {
+      "campaignId": "SEM-1006",
+      "name": "Holiday Gift Guide \u2014 Accessories",
+      "status": "Ended",
+      "traffic": {
+        "adspend": 5120.8,
+        "gmv": 16890.2,
+        "clicks": 8900,
+        "impressions": 310400,
+        "ctr": 0.0287,
+        "cpc": 0.58,
+        "roas": 3.3
+      }
+    },
+    {
+      "campaignId": "SEM-1007",
+      "name": "Brand Defense \u2014 Keyboards",
+      "status": "Live",
+      "traffic": {
+        "adspend": 980.4,
+        "gmv": 3420.0,
+        "clicks": 1650,
+        "impressions": 54000,
+        "ctr": 0.0306,
+        "cpc": 0.59,
+        "roas": 3.49
+      }
+    },
+    {
+      "campaignId": "SEM-1008",
+      "name": "Category \u2014 Webcams",
+      "status": "Live",
+      "traffic": {
+        "adspend": 720.15,
+        "gmv": 2150.5,
+        "clicks": 1180,
+        "impressions": 41200,
+        "ctr": 0.0286,
+        "cpc": 0.61,
+        "roas": 2.99
+      }
+    },
+    {
+      "campaignId": "SEM-1009",
+      "name": "Promo \u2014 Back to School Laptops",
+      "status": "Paused",
+      "traffic": {
+        "adspend": 3100.0,
+        "gmv": 8750.25,
+        "clicks": 4020,
+        "impressions": 168500,
+        "ctr": 0.0239,
+        "cpc": 0.77,
+        "roas": 2.82
+      }
+    },
+    {
+      "campaignId": "SEM-1010",
+      "name": "Competitor Conquest \u2014 Monitors",
+      "status": "Live",
+      "traffic": {
+        "adspend": 1580.9,
+        "gmv": 6120.0,
+        "clicks": 2210,
+        "impressions": 78500,
+        "ctr": 0.0282,
+        "cpc": 0.72,
+        "roas": 3.87
+      }
+    },
+    {
+      "campaignId": "SEM-1011",
+      "name": "New ASIN Launch \u2014 Docking Stations",
+      "status": "Scheduled",
+      "traffic": {
+        "adspend": 0,
+        "gmv": 0,
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "cpc": 0,
+        "roas": 0
+      }
+    },
+    {
+      "campaignId": "SEM-1012",
+      "name": "Evergreen \u2014 Cables & Adapters",
+      "status": "Live",
+      "traffic": {
+        "adspend": 640.25,
+        "gmv": 2780.4,
+        "clicks": 1420,
+        "impressions": 39600,
+        "ctr": 0.0359,
+        "cpc": 0.45,
+        "roas": 4.34
+      }
+    }
+  ]
+}
