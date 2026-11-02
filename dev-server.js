@@ -22,6 +22,8 @@ const token = require('./api/v3/token.js').default;
 const vendorProducts = require('./api/v3/vendor-products.js').default;
 const semCampaigns = require('./api/v3/advertising/sem/campaigns.js').default;
 const semPerformance = require('./api/v3/advertising/sem/performance-summary.js').default;
+const availableReconFiles = require('./api/v3/report/reconreport/availableReconFiles.js').default;
+const reconFileJson = require('./api/v3/report/reconreport/reconFileJson.js').default;
 
 const server = http.createServer(async (req, res) => {
   const url = new URL(req.url || '/', `http://localhost:${PORT}`);
@@ -118,7 +120,12 @@ const server = http.createServer(async (req, res) => {
       return;
     }
 
-    if (pathname === '/api/v3/orders' || pathname === '/v3/orders') {
+    // GET /v3/orders/{purchaseOrderId} (single order + lines) or GET /v3/orders (list)
+    const ordersMatch = pathname.match(/^\/(?:api\/)?v3\/orders(?:\/([^/]+))?$/);
+    if (ordersMatch) {
+      if (ordersMatch[1]) {
+        req.purchaseOrderId = decodeURIComponent(ordersMatch[1]);
+      }
       orders(req, expressRes);
       return;
     }
@@ -160,6 +167,23 @@ const server = http.createServer(async (req, res) => {
       return;
     }
 
+    // Payment / recon reports (Walmart Finances)
+    if (
+      pathname === '/v3/report/reconreport/availableReconFiles' ||
+      pathname === '/api/v3/report/reconreport/availableReconFiles'
+    ) {
+      availableReconFiles(req, expressRes);
+      return;
+    }
+
+    if (
+      pathname === '/v3/report/reconreport/reconFileJson' ||
+      pathname === '/api/v3/report/reconreport/reconFileJson'
+    ) {
+      reconFileJson(req, expressRes);
+      return;
+    }
+
     // 404
     res.writeHead(404, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ error: 'Not found', path: pathname }));
@@ -183,11 +207,14 @@ server.listen(PORT, () => {
   console.log('📦 Endpoints:');
   console.log(`   GET /api/v3/items?limit=50              (Auth: Bearer token)`);
   console.log(`   GET /api/v3/orders?limit=50             (Auth: Bearer token)`);
+  console.log(`   GET /api/v3/orders/{purchaseOrderId}    (single order + lines)`);
   console.log(`   GET /api/v3/returns?limit=200           (Auth: Bearer token)`);
   console.log(`   GET /api/v3/products?vendor=acme        (Vendor products)`);
   console.log(`   GET /api/v3/products?vendor=abc         (Vendor products)`);
   console.log(`   GET /v3/advertising/sem/campaigns       (SEM campaigns)`);
   console.log(`   POST /v3/advertising/sem/campaigns/performance-summary`);
+  console.log(`   GET /v3/report/reconreport/availableReconFiles`);
+  console.log(`   GET /v3/report/reconreport/reconFileJson?reportDate=MMDDYYYY`);
   console.log('');
   console.log('🧪 Test with curl:');
   console.log(`   curl -H "Authorization: Bearer test-token" http://localhost:${PORT}/api/v3/items`);

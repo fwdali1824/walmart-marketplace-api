@@ -22,6 +22,23 @@ function handler(req, res) {
     return;
   }
 
+  // GET /v3/orders/{purchaseOrderId} — Amazon getOrderItems parallel (lines included)
+  const purchaseOrderId = req.purchaseOrderId || req.query.purchaseOrderId;
+  if (purchaseOrderId) {
+    const { orders } = loadCatalog(req.headers);
+    const order = orders.find((o) => String(o.purchaseOrderId) === String(purchaseOrderId));
+    if (!order) {
+      res.status(404).json({
+        title: 'Not Found',
+        status: 404,
+        detail: `Order ${purchaseOrderId} not found`,
+      });
+      return;
+    }
+    res.status(200).json(order);
+    return;
+  }
+
   const { limit = '50', offset = '0', lastModifiedStartDate, lastModifiedEndDate, createdStartDate, createdEndDate } = req.query;
   const parsedLimit = Math.min(Math.max(parseInt(limit, 10) || 50, 1), 200);
   const parsedOffset = Math.max(parseInt(offset, 10) || 0, 0);
